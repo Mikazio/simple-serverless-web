@@ -4,12 +4,16 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "static_web" {
-  bucket = "varin-static-website.com"
-  acl    = "private"
-  policy = "${file("s3-policy.json")}"
+    bucket = "varin-static-website.com"
+    acl    = "private"
+    policy = "${file("s3-policy.json")}"
+    
+    website {
+        index_document = "index.html"
+    }
 
-  tags = {
-    Name        = "Static Bucket"
-    Environment = "Pre-Production"
-  }
+    tags = {
+        Name    = "Static Bucket"
+        Environment = "Pre-Production"
+    }
 }
