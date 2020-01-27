@@ -6,6 +6,7 @@ provider "aws" {
 resource "aws_s3_bucket" "static_web" {
   bucket = "varin-static-website.com"
   acl    = "private"
+  policy = "${file("s3-policy.json")}"
 
   tags = {
     Name        = "Static Bucket"
